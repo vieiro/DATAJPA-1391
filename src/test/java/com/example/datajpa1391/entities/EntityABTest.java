@@ -97,7 +97,7 @@ public class EntityABTest {
         // EntityManager persist does not fail
         entityManager.persist(ab);
 
-        EntityABPK pk = new EntityABPK(a, b);
+        EntityABPK pk = new EntityABPK(a.getId(), b.getId());
         Optional<EntityAB> abAgain = entityABRepository.findById(pk);
 
         Assertions.assertTrue(abAgain.isPresent());

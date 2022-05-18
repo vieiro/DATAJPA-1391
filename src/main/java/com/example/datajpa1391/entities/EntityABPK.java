@@ -8,38 +8,38 @@ import java.util.Objects;
  */
 public class EntityABPK implements Serializable {
 
-    private EntityA a;
-    private EntityB b;
+    private long a;
+    private long b;
 
     public EntityABPK() {
     }
 
-    public EntityABPK(EntityA a, EntityB b) {
+    public EntityABPK(long a, long b) {
         this.a = a;
         this.b = b;
     }
 
-    public EntityA getA() {
+    public long getA() {
         return a;
     }
 
-    public void setA(EntityA a) {
+    public void setA(long a) {
         this.a = a;
     }
 
-    public EntityB getB() {
+    public long getB() {
         return b;
     }
 
-    public void setB(EntityB b) {
+    public void setB(long b) {
         this.b = b;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 29 * hash + Objects.hashCode(this.a);
-        hash = 29 * hash + Objects.hashCode(this.b);
+        hash = 67 * hash + (int) (this.a ^ (this.a >>> 32));
+        hash = 67 * hash + (int) (this.b ^ (this.b >>> 32));
         return hash;
     }
 
@@ -55,10 +55,10 @@ public class EntityABPK implements Serializable {
             return false;
         }
         final EntityABPK other = (EntityABPK) obj;
-        if (!Objects.equals(this.a, other.a)) {
+        if (this.a != other.a) {
             return false;
         }
-        return Objects.equals(this.b, other.b);
+        return this.b == other.b;
     }
-    
+
 }
