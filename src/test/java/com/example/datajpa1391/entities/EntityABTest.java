@@ -78,6 +78,15 @@ public class EntityABTest {
             // e.printStackTrace(System.err);
         }
 
+        EntityABPK pk = new EntityABPK(a.getId(), b.getId());
+        Optional<EntityAB> abAgain = entityABRepository.findById(pk);
+
+        // This now works with the new EntityABPK 
+        // with fields same as EntityA.id (aka long) and same name.
+        Assertions.assertTrue(abAgain.isPresent());
+        Assertions.assertEquals("A", abAgain.get().getA().getName());
+        Assertions.assertEquals("B", abAgain.get().getB().getName());
+
     }
 
     @Test
